@@ -42,6 +42,7 @@ import java.util.Map;
 /**
  * @author Clinton Begin
  */
+@SuppressWarnings("SqlRunner")
 public class SqlRunner {
     public static final int NO_GENERATED_KEY = Integer.MIN_VALUE + 1001;
     private Connection connection;

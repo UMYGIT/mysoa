@@ -4,7 +4,7 @@ import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
-import com.numberONe.entity.UserFormMap;
+import com.soap.entity.UserFormMap;
 
 public class PasswordHelper {
 	private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();

@@ -30,6 +30,7 @@ import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 /**
  * @author Clinton Begin
  */
+@SuppressWarnings("unchecked")
 public class MetaObject {
 
 	private Object originalObject;

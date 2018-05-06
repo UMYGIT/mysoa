@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
+//import com.soap.plugin.PagePlugin;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.io.ResolverUtil;
 import org.apache.ibatis.mapping.BoundSql;
@@ -36,10 +37,10 @@ import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.reflection.ExceptionUtil;
 import org.apache.ibatis.session.Configuration;
 
-import com.numberONe.plugin.PagePlugin;
-import com.numberONe.plugin.PageView;
-import com.numberONe.util.Common;
-import com.numberONe.util.EhcacheUtils;
+import com.soap.plugin.PagePlugin;
+import com.soap.plugin.PageView;
+import com.soap.utils.Common;
+import com.soap.utils.EhcacheUtils;
 
 /**
  * @author Clinton Begin

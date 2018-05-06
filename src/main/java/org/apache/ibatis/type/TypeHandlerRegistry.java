@@ -33,6 +33,7 @@ import org.apache.ibatis.io.ResolverUtil;
 /**
  * @author Clinton Begin
  */
+@SuppressWarnings("unchecked")
 public final class TypeHandlerRegistry {
 
   private static final Map<Class<?>, Class<?>> reversePrimitiveMap = new HashMap<Class<?>, Class<?>>() {

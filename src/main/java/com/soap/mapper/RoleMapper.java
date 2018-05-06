@@ -2,8 +2,8 @@ package com.soap.mapper;
 
 import java.util.List;
 
-import com.numberONe.entity.RoleFormMap;
-import com.numberONe.mapper.base.BaseMapper;
+import com.soap.entity.RoleFormMap;
+import com.soap.mapper.base.BaseMapper;
 
 public interface RoleMapper extends BaseMapper{
 	public List<RoleFormMap> seletUserRole(RoleFormMap map);
