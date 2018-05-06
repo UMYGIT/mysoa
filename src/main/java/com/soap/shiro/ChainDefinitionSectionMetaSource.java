@@ -8,9 +8,9 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.config.Ini;
 import org.springframework.beans.factory.FactoryBean;
 
-import com.numberONe.entity.ResFormMap;
-import com.numberONe.mapper.ResourcesMapper;
-import com.numberONe.util.ConfigUtils;
+import com.soap.entity.ResFormMap;
+import com.soap.mapper.ResourcesMapper;
+import com.soap.utils.ConfigUtils;
 
 /**
  * 产生责任链，确定每个url的访问权限
@@ -25,7 +25,7 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 	private String filterChainDefinitions = null;
 
 	public Ini.Section getObject() throws Exception {
-		new ConfigUtils().initTableField(resourcesMapper); 
+		new ConfigUtils().initTableField(resourcesMapper);
 		Ini ini = new Ini();
 		// 加载默认的url
 		ini.load(filterChainDefinitions);
@@ -53,7 +53,7 @@ public class ChainDefinitionSectionMetaSource implements FactoryBean<Ini.Section
 
 	/**
 	 * 通过filterChainDefinitions对默认的url过滤定义
-	 * 
+	 *
 	 * @param filterChainDefinitions
 	 *            默认的url过滤定义
 	 */

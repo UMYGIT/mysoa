@@ -18,10 +18,10 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
-import com.numberONe.entity.ResFormMap;
-import com.numberONe.entity.UserFormMap;
-import com.numberONe.mapper.ResourcesMapper;
-import com.numberONe.mapper.UserMapper;
+import com.soap.entity.ResFormMap;
+import com.soap.entity.UserFormMap;
+import com.soap.mapper.ResourcesMapper;
+import com.soap.mapper.UserMapper;
 
 /**
  * 自定义Realm,进行数据源配置
