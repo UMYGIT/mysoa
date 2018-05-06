@@ -19,10 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.builder.BaseBuilder;
-import org.apache.ibatis.builder.BuilderException;
-import org.apache.ibatis.builder.ParameterExpression;
-import org.apache.ibatis.builder.StaticSqlSource;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.parsing.GenericTokenParser;
@@ -36,7 +32,7 @@ import org.apache.ibatis.type.JdbcType;
  * @author Clinton Begin
  */
 public class SqlSourceBuilder extends
-        org.apache.ibatis.builder.BaseBuilder {
+		BaseBuilder {
 
 	private static final String parameterProperties = "javaType,jdbcType,mode,numericScale,resultMap,typeHandler,jdbcTypeName";
 
@@ -164,10 +160,10 @@ public class SqlSourceBuilder extends
 					// Do Nothing
 				} else if ("expression"
 						.equals(name)) {
-					throw new org.apache.ibatis.builder.BuilderException(
+					throw new BuilderException(
 							"Expression based parameters are not supported yet");
 				} else {
-					throw new org.apache.ibatis.builder.BuilderException(
+					throw new BuilderException(
 							"An invalid property '"
 									+ name
 									+ "' was found in mapping #{"
@@ -189,7 +185,7 @@ public class SqlSourceBuilder extends
 			try {
 				return new ParameterExpression(
 						content);
-			} catch (org.apache.ibatis.builder.BuilderException ex) {
+			} catch (BuilderException ex) {
 				throw ex;
 			} catch (Exception ex) {
 				throw new BuilderException(

@@ -15,7 +15,6 @@
  */
 package org.apache.ibatis.builder;
 
-import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.cache.Cache;
 
 /**

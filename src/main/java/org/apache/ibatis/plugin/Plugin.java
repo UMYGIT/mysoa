@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.pulgin;
+package org.apache.ibatis.plugin;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -33,10 +33,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.io.ResolverUtil;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.plugin.*;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.reflection.ExceptionUtil;
 import org.apache.ibatis.session.Configuration;
 
@@ -51,16 +47,16 @@ import com.numberONe.util.EhcacheUtils;
 public class Plugin implements InvocationHandler {
 
 	private Object target;
-	private org.apache.ibatis.plugin.Interceptor interceptor;
+	private Interceptor interceptor;
 	private Map<Class<?>, Set<Method>> signatureMap;
 
-	private Plugin(Object target, org.apache.ibatis.plugin.Interceptor interceptor, Map<Class<?>, Set<Method>> signatureMap) {
+	private Plugin(Object target, Interceptor interceptor, Map<Class<?>, Set<Method>> signatureMap) {
 		this.target = target;
 		this.interceptor = interceptor;
 		this.signatureMap = signatureMap;
 	}
 
-	public static Object wrap(Object target, org.apache.ibatis.plugin.Interceptor interceptor) {
+	public static Object wrap(Object target, Interceptor interceptor) {
 		Map<Class<?>, Set<Method>> signatureMap = getSignatureMap(interceptor);
 		Class<?> type = target.getClass();
 		Class<?>[] interfaces = getAllInterfaces(type, signatureMap);
@@ -84,7 +80,7 @@ public class Plugin implements InvocationHandler {
 	}
 
 	private static Map<Class<?>, Set<Method>> getSignatureMap(Interceptor interceptor) {
-		org.apache.ibatis.plugin.Intercepts interceptsAnnotation = interceptor.getClass().getAnnotation(Intercepts.class);
+		Intercepts interceptsAnnotation = interceptor.getClass().getAnnotation(Intercepts.class);
 		if (interceptsAnnotation == null) { // issue #251
 			throw new PluginException(
 					"No @Intercepts annotation was found in interceptor " + interceptor.getClass().getName());

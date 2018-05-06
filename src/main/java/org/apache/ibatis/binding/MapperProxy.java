@@ -20,7 +20,6 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import org.apache.ibatis.binding.MapperMethod;
 import org.apache.ibatis.reflection.ExceptionUtil;
 import org.apache.ibatis.session.SqlSession;
 
@@ -34,12 +33,12 @@ public class MapperProxy<T> implements
 	private static final long serialVersionUID = -6424540398559729838L;
 	private final SqlSession sqlSession;
 	private final Class<T> mapperInterface;
-	private final Map<Method, org.apache.ibatis.binding.MapperMethod> methodCache;
+	private final Map<Method, MapperMethod> methodCache;
 
 	public MapperProxy(
 			SqlSession sqlSession,
 			Class<T> mapperInterface,
-			Map<Method, org.apache.ibatis.binding.MapperMethod> methodCache) {
+			Map<Method, MapperMethod> methodCache) {
 		this.sqlSession = sqlSession;
 		this.mapperInterface = mapperInterface;
 		this.methodCache = methodCache;
@@ -58,14 +57,14 @@ public class MapperProxy<T> implements
 						.unwrapThrowable(t);
 			}
 		}
-		final org.apache.ibatis.binding.MapperMethod mapperMethod = cachedMapperMethod(method);
+		final MapperMethod mapperMethod = cachedMapperMethod(method);
 		return mapperMethod.execute(
 				sqlSession, args);
 	}
 
-	private org.apache.ibatis.binding.MapperMethod cachedMapperMethod(
+	private MapperMethod cachedMapperMethod(
 			Method method) {
-		org.apache.ibatis.binding.MapperMethod mapperMethod = methodCache
+		MapperMethod mapperMethod = methodCache
 				.get(method);
 		if (mapperMethod == null) {
 			mapperMethod = new MapperMethod(

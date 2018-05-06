@@ -13,21 +13,19 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.pulgin;
+package org.apache.ibatis.plugin;
 
-import org.apache.ibatis.plugin.Signature;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.util.Properties;
 
 /**
  * @author Clinton Begin
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface Intercepts {
-  Signature[] value();
-}
+public interface Interceptor {
 
+	Object intercept(Invocation invocation) throws Throwable;
+
+	Object plugin(Object target);
+
+	void setProperties(Properties properties);
+
+}

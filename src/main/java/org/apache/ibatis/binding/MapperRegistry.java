@@ -15,8 +15,6 @@
  */
 package org.apache.ibatis.binding;
 
-import org.apache.ibatis.binding.BindingException;
-import org.apache.ibatis.binding.MapperProxyFactory;
 import org.apache.ibatis.builder.annotation.MapperAnnotationBuilder;
 import org.apache.ibatis.io.ResolverUtil;
 import org.apache.ibatis.session.Configuration;
@@ -36,7 +34,7 @@ import java.util.Set;
 public class MapperRegistry {
 
 	private Configuration config;
-	private final Map<Class<?>, org.apache.ibatis.binding.MapperProxyFactory<?>> knownMappers = new HashMap<Class<?>, org.apache.ibatis.binding.MapperProxyFactory<?>>();
+	private final Map<Class<?>, MapperProxyFactory<?>> knownMappers = new HashMap<Class<?>, MapperProxyFactory<?>>();
 
 	public MapperRegistry(
 			Configuration config) {
@@ -47,7 +45,7 @@ public class MapperRegistry {
 	public <T> T getMapper(
 			Class<T> type,
 			SqlSession sqlSession) {
-		final org.apache.ibatis.binding.MapperProxyFactory<T> mapperProxyFactory = (org.apache.ibatis.binding.MapperProxyFactory<T>) knownMappers
+		final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers
 				.get(type);
 		if (mapperProxyFactory == null)
 			throw new BindingException(

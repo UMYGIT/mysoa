@@ -15,8 +15,6 @@
  */
 package org.apache.ibatis.annotations;
 
-import org.apache.ibatis.annotations.Result;
-
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -305,29 +305,29 @@ public class MapperAnnotationBuilder {
       }
 
       assistant.addMappedStatement(
-              mappedStatementId,
-              sqlSource,
-              statementType,
-              sqlCommandType,
-              fetchSize,
-              timeout,
-              null,                             // ParameterMapID
-              parameterTypeClass,
-              resultMapId,    // ResultMapID
-              getReturnType(method),
-              resultSetType,
-              flushCache,
-              useCache,
-              false, // TODO issue #577
-              keyGenerator,
-              keyProperty,
-              keyColumn,
-              null,
-              languageDriver,
-              null);
+          mappedStatementId,
+          sqlSource,
+          statementType,
+          sqlCommandType,
+          fetchSize,
+          timeout,
+          null,                             // ParameterMapID
+          parameterTypeClass,
+          resultMapId,    // ResultMapID
+          getReturnType(method),
+          resultSetType,
+          flushCache,
+          useCache,
+          false, // TODO issue #577
+          keyGenerator,
+          keyProperty,
+          keyColumn,
+          null,
+          languageDriver,
+          null);
     }
   }
-
+  
   private LanguageDriver getLanguageDriver(Method method) {
     Lang lang = method.getAnnotation(Lang.class);
     Class<?> langClass = null;
@@ -358,7 +358,7 @@ public class MapperAnnotationBuilder {
       ResultType rt = method.getAnnotation(ResultType.class);
       if (rt != null) {
         returnType = rt.value();
-      }
+      } 
     } else if (Collection.class.isAssignableFrom(returnType)) {
       Type returnTypeParameter = method.getGenericReturnType();
       if (returnTypeParameter instanceof ParameterizedType) {
@@ -471,20 +471,20 @@ public class MapperAnnotationBuilder {
       ArrayList<ResultFlag> flags = new ArrayList<ResultFlag>();
       if (result.id()) flags.add(ResultFlag.ID);
       ResultMapping resultMapping = assistant.buildResultMapping(
-              resultType,
-              nullOrEmpty(result.property()),
-              nullOrEmpty(result.column()),
-              result.javaType() == void.class ? null : result.javaType(),
-              result.jdbcType() == JdbcType.UNDEFINED ? null : result.jdbcType(),
-              hasNestedSelect(result) ? nestedSelectId(result) : null,
-              null,
-              null,
-              null,
-              result.typeHandler() == UnknownTypeHandler.class ? null : result.typeHandler(),
-              flags,
-              null,
-              null,
-              isLazy(result));
+          resultType,
+          nullOrEmpty(result.property()),
+          nullOrEmpty(result.column()),
+          result.javaType() == void.class ? null : result.javaType(),
+          result.jdbcType() == JdbcType.UNDEFINED ? null : result.jdbcType(),
+          hasNestedSelect(result) ? nestedSelectId(result) : null,
+          null,
+          null,
+          null,
+          result.typeHandler() == UnknownTypeHandler.class ? null : result.typeHandler(),
+          flags,
+          null,
+          null,
+          isLazy(result));
       resultMappings.add(resultMapping);
     }
   }
@@ -509,12 +509,12 @@ public class MapperAnnotationBuilder {
     }
     return isLazy;
   }
-
+  
   private boolean hasNestedSelect(Result result) {
     if (result.one().select().length() > 0 && result.many().select().length() > 0) {
       throw new BuilderException("Cannot use both @One and @Many annotations in the same @Result");
     }
-    return result.one().select().length() > 0 || result.many().select().length() > 0;
+    return result.one().select().length() > 0 || result.many().select().length() > 0;  
   }
 
   private void applyConstructorArgs(Arg[] args, Class<?> resultType, List<ResultMapping> resultMappings) {
@@ -523,20 +523,20 @@ public class MapperAnnotationBuilder {
       flags.add(ResultFlag.CONSTRUCTOR);
       if (arg.id()) flags.add(ResultFlag.ID);
       ResultMapping resultMapping = assistant.buildResultMapping(
-              resultType,
-              null,
-              nullOrEmpty(arg.column()),
-              arg.javaType() == void.class ? null : arg.javaType(),
-              arg.jdbcType() == JdbcType.UNDEFINED ? null : arg.jdbcType(),
-              nullOrEmpty(arg.select()),
-              nullOrEmpty(arg.resultMap()),
-              null,
-              null,
-              arg.typeHandler() == UnknownTypeHandler.class ? null : arg.typeHandler(),
-              flags,
-              null,
-              null,
-              false);
+          resultType,
+          null,
+          nullOrEmpty(arg.column()),
+          arg.javaType() == void.class ? null : arg.javaType(),
+          arg.jdbcType() == JdbcType.UNDEFINED ? null : arg.jdbcType(),
+          nullOrEmpty(arg.select()),
+          nullOrEmpty(arg.resultMap()),
+          null,
+          null,
+          arg.typeHandler() == UnknownTypeHandler.class ? null : arg.typeHandler(),
+          flags,
+          null,
+          null,
+          false);
       resultMappings.add(resultMapping);
     }
   }
@@ -575,8 +575,8 @@ public class MapperAnnotationBuilder {
     SqlCommandType sqlCommandType = SqlCommandType.SELECT;
 
     assistant.addMappedStatement(id, sqlSource, statementType, sqlCommandType, fetchSize, timeout, parameterMap, parameterTypeClass, resultMap, resultTypeClass, resultSetTypeEnum,
-            flushCache, useCache, false,
-            keyGenerator, keyProperty, keyColumn, null, languageDriver, null);
+        flushCache, useCache, false,
+        keyGenerator, keyProperty, keyColumn, null, languageDriver, null);
 
     id = assistant.applyCurrentNamespace(id, false);
 

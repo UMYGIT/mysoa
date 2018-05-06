@@ -15,8 +15,6 @@
  */
 package org.apache.ibatis.builder;
 
-import org.apache.ibatis.builder.BuilderException;
-
 import java.util.HashMap;
 
 /**
@@ -128,7 +126,7 @@ public class ParameterExpression extends
 				option(expression,
 						p + 1);
 			} else {
-				throw new org.apache.ibatis.builder.BuilderException(
+				throw new BuilderException(
 						"Parsing error in {"
 								+ new String(
 										expression)

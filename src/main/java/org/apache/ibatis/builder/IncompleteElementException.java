@@ -15,8 +15,6 @@
  */
 package org.apache.ibatis.builder;
 
-import org.apache.ibatis.builder.BuilderException;
-
 /**
  * @author Eduardo Macarron
  */

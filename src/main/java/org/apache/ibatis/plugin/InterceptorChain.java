@@ -1,5 +1,5 @@
 /*
- *    Copyright 2009-2012 the original author or authors.
+ *    Copyright 2009-2013 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,21 +13,32 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.pulgin;
+package org.apache.ibatis.plugin;
 
-import org.apache.ibatis.plugin.Invocation;
-
-import java.util.Properties;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Clinton Begin
  */
-public interface Interceptor {
+public class InterceptorChain {
 
-	Object intercept(Invocation invocation) throws Throwable;
+	private final List<Interceptor> interceptors = new ArrayList<Interceptor>();
 
-	Object plugin(Object target);
+	public Object pluginAll(Object target) {
+		for (Interceptor interceptor : interceptors) {
+			target = interceptor.plugin(target);
+		}
+		return target;
+	}
 
-	void setProperties(Properties properties);
+	public void addInterceptor(Interceptor interceptor) {
+		interceptors.add(interceptor);
+	}
+
+	public List<Interceptor> getInterceptors() {
+		return Collections.unmodifiableList(interceptors);
+	}
 
 }

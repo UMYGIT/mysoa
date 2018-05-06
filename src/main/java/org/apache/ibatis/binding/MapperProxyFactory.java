@@ -20,8 +20,6 @@ import java.lang.reflect.Proxy;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.ibatis.binding.MapperMethod;
-import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.session.SqlSession;
 
 /**
@@ -30,7 +28,7 @@ import org.apache.ibatis.session.SqlSession;
 public class MapperProxyFactory<T> {
 
 	private final Class<T> mapperInterface;
-	private Map<Method, org.apache.ibatis.binding.MapperMethod> methodCache = new ConcurrentHashMap<Method, org.apache.ibatis.binding.MapperMethod>();
+	private Map<Method, MapperMethod> methodCache = new ConcurrentHashMap<Method, MapperMethod>();
 
 	public MapperProxyFactory(
 			Class<T> mapperInterface) {
@@ -47,7 +45,7 @@ public class MapperProxyFactory<T> {
 
 	@SuppressWarnings("unchecked")
 	protected T newInstance(
-			org.apache.ibatis.binding.MapperProxy<T> mapperProxy) {
+			MapperProxy<T> mapperProxy) {
 		return (T) Proxy
 				.newProxyInstance(
 						mapperInterface
@@ -58,7 +56,7 @@ public class MapperProxyFactory<T> {
 
 	public T newInstance(
 			SqlSession sqlSession) {
-		final org.apache.ibatis.binding.MapperProxy<T> mapperProxy = new MapperProxy<T>(
+		final MapperProxy<T> mapperProxy = new MapperProxy<T>(
 				sqlSession,
 				mapperInterface,
 				methodCache);

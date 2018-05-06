@@ -20,8 +20,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.UnknownTypeHandler;
@@ -44,7 +42,7 @@ public @interface Result {
 
   Class<? extends TypeHandler<?>> typeHandler() default UnknownTypeHandler.class;
 
-  org.apache.ibatis.annotations.One one() default @One;
+  One one() default @One;
 
-  org.apache.ibatis.annotations.Many many() default @Many;
+  Many many() default @Many;
 }

@@ -13,40 +13,30 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.pulgin;
+package org.apache.ibatis.plugin;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import org.apache.ibatis.exceptions.PersistenceException;
 
 /**
  * @author Clinton Begin
  */
-public class Invocation {
+public class PluginException extends PersistenceException {
 
-  private Object target;
-  private Method method;
-  private Object[] args;
+  private static final long serialVersionUID = 8548771664564998595L;
 
-  public Invocation(Object target, Method method, Object[] args) {
-    this.target = target;
-    this.method = method;
-    this.args = args;
+  public PluginException() {
+    super();
   }
 
-  public Object getTarget() {
-    return target;
+  public PluginException(String message) {
+    super(message);
   }
 
-  public Method getMethod() {
-    return method;
+  public PluginException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  public Object[] getArgs() {
-    return args;
+  public PluginException(Throwable cause) {
+    super(cause);
   }
-
-  public Object proceed() throws InvocationTargetException, IllegalAccessException {
-    return method.invoke(target, args);
-  }
-
 }

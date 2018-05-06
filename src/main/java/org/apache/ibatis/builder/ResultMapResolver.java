@@ -17,7 +17,6 @@ package org.apache.ibatis.builder;
 
 import java.util.List;
 
-import org.apache.ibatis.builder.MapperBuilderAssistant;
 import org.apache.ibatis.mapping.Discriminator;
 import org.apache.ibatis.mapping.ResultMap;
 import org.apache.ibatis.mapping.ResultMapping;
@@ -26,7 +25,7 @@ import org.apache.ibatis.mapping.ResultMapping;
  * @author Eduardo Macarron
  */
 public class ResultMapResolver {
-	private final org.apache.ibatis.builder.MapperBuilderAssistant assistant;
+	private final MapperBuilderAssistant assistant;
 	private String id;
 	private Class<?> type;
 	private String extend;

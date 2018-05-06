@@ -25,9 +25,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.apache.ibatis.builder.BaseBuilder;
-import org.apache.ibatis.builder.BuilderException;
-import org.apache.ibatis.builder.IncompleteElementException;
 import org.apache.ibatis.cache.Cache;
 import org.apache.ibatis.cache.decorators.LruCache;
 import org.apache.ibatis.cache.impl.PerpetualCache;
@@ -79,14 +76,14 @@ public class MapperBuilderAssistant
 	public void setCurrentNamespace(
 			String currentNamespace) {
 		if (currentNamespace == null) {
-			throw new org.apache.ibatis.builder.BuilderException(
+			throw new BuilderException(
 					"The mapper element requires a namespace attribute to be specified.");
 		}
 
 		if (this.currentNamespace != null
 				&& !this.currentNamespace
 						.equals(currentNamespace)) {
-			throw new org.apache.ibatis.builder.BuilderException(
+			throw new BuilderException(
 					"Wrong namespace. Expected '"
 							+ this.currentNamespace
 							+ "' but found '"
@@ -112,7 +109,7 @@ public class MapperBuilderAssistant
 					+ "."))
 				return base;
 			if (base.contains("."))
-				throw new org.apache.ibatis.builder.BuilderException(
+				throw new BuilderException(
 						"Dots are not allowed in element names, please remove it from "
 								+ base);
 		}
@@ -131,7 +128,7 @@ public class MapperBuilderAssistant
 			Cache cache = configuration
 					.getCache(namespace);
 			if (cache == null) {
-				throw new org.apache.ibatis.builder.IncompleteElementException(
+				throw new IncompleteElementException(
 						"No cache for namespace '"
 								+ namespace
 								+ "' could be found.");
@@ -140,7 +137,7 @@ public class MapperBuilderAssistant
 			unresolvedCacheRef = false;
 			return cache;
 		} catch (IllegalArgumentException e) {
-			throw new org.apache.ibatis.builder.IncompleteElementException(
+			throw new IncompleteElementException(
 					"No cache for namespace '"
 							+ namespace
 							+ "' could be found.",
@@ -246,7 +243,7 @@ public class MapperBuilderAssistant
 		if (extend != null) {
 			if (!configuration
 					.hasResultMap(extend)) {
-				throw new org.apache.ibatis.builder.IncompleteElementException(
+				throw new IncompleteElementException(
 						"Could not find a parent resultmap with id '"
 								+ extend
 								+ "'");
@@ -359,7 +356,7 @@ public class MapperBuilderAssistant
 			String resultSets) {
 
 		if (unresolvedCacheRef)
-			throw new org.apache.ibatis.builder.IncompleteElementException(
+			throw new IncompleteElementException(
 					"Cache-ref not yet resolved");
 
 		id = applyCurrentNamespace(id,
@@ -448,7 +445,7 @@ public class MapperBuilderAssistant
 						.parameterMap(configuration
 								.getParameterMap(parameterMap));
 			} catch (IllegalArgumentException e) {
-				throw new org.apache.ibatis.builder.IncompleteElementException(
+				throw new IncompleteElementException(
 						"Could not find parameter map "
 								+ parameterMap,
 						e);
